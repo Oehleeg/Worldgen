@@ -1,3 +1,3 @@
 # Worldgen
 
-Html Preview: : http://htmlpreview.github.io/?https://github.com/Oehleeg/Worldgen/blob/master/start.html
+Html Preview: : https://cdn.rawgit.com/Oehleeg/Worldgen/47aa1654/start.html
