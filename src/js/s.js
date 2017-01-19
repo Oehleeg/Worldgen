@@ -33,6 +33,7 @@ var worldgen = {
 	},
 	hl_biomeborders: false,
 	map:					{},
+	rivers:				{},
 	cultures:			{},
 	colormap			: true,
 	actFilter			: '',
@@ -105,7 +106,7 @@ var worldgen = {
 			
 	
 		},	
-		'Griddy World' : function(pthis){
+		'# Griddy World' : function(pthis){
 			pthis.map = [];
 			var Mw = pthis.mw;
 			var Mh = pthis.mh;
@@ -162,7 +163,7 @@ var worldgen = {
 			
 		
 		},		
-		'Triple Peaks' : function(pthis){
+		'# Triple Peaks' : function(pthis){
 			pthis.map = [];
 			var Mw = pthis.mw;
 			var Mh = pthis.mh;
@@ -227,7 +228,7 @@ var worldgen = {
 			pTL.push(['genRivers']);			
 			pTL.push(['BlurH',aHm/2,aHm,1]);				
 		},
-		'Simple Continent' : function(pthis){
+		'# Simple Continent' : function(pthis){
 		
 			pthis.map = [];
 			var Mw = pthis.mw;
@@ -338,7 +339,7 @@ var worldgen = {
 			
 			
 			pTL.push(['RanH',30,aHm,25]);
-			pTL.push(['BlurH',-1,aHm,5]);
+		
 			//N-S Valleys
 			var va = 4;
 			var vf = 6;
@@ -1276,7 +1277,12 @@ var worldgen = {
 						ix = ex + Math.round(((sx-ex)/dist)*j)
 						iy = ey + Math.round(((sy-ey)/dist)*j);
 						interid = ix + (iy*mw);
-						newriver.push(interid);
+						inh = cmap[interid].h;
+						if (inh < sl){
+							break;
+						}else{
+							newriver.push(interid);
+						}
 					}
 				
 				}
@@ -1306,9 +1312,7 @@ var worldgen = {
 					pthis.map[rarray[i]].h = 0;//sl+Math.round((pthis.map[rarray[i]].h-sl)*0.1)
 				}
 			}
-			
-			
-			
+
 			function distance(p1, p2){
 				dx = p2.x - p1.x; dx *= dx;
 				dy = p2.y - p1.y; dy *= dy;
@@ -1327,9 +1331,6 @@ var worldgen = {
 				return ret;
 			}
 			
-			
-
-		
 		}
 	},
 	init: 					function(){
@@ -1405,6 +1406,7 @@ var worldgen = {
 		c+='<div class="background"></div>';
 		c+='<div class="screen">';
 			c+='<div class="panelbar">';
+				c+='<div class="handler"></div>';
 				c+='<div class="panel File">';
 					c+='<div class="btnhead">File</div>';
 					c+='<a class="export btn">export</a>';
